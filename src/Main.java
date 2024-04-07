@@ -4,12 +4,10 @@ public class Main {
     public static void main(String[] args) {
         // Anzahl Möglichkeiten
         int amount = getAnswerAmount();
-        String[] Answers = readAnswers(amount);
-
         // Antworten einlesen
-
+        String[] Answers = readAnswers(amount);
         // frage einlesen
-
+        askMe(Answers);
         // Zufällige Antwort wählen
 
         // neue frage oder abbrechen
@@ -40,4 +38,21 @@ public class Main {
         }
         return answersArray;
     }
+
+    public static int getRandomNumber(int maxNr) {
+        int minNr = 0;
+        return (int) (Math.random() * (maxNr - minNr + 1) + minNr);
+    }
+
+    public static void askMe(String[] answers) {
+        boolean isEnd = false;
+        String readInput = JOptionPane.showInputDialog("Stelle eine Frage.");
+        while (!isEnd) {
+            if(readInput.isEmpty()) readInput = "Du hast keine Frage gestellt. Möchtest du eine Frage stellen?";
+            else readInput = JOptionPane.showInputDialog("Die Antwort lautet: " +  answers[getRandomNumber(answers.length)] + "  Stelle noch eine Frage oder klicke auf Abrechen.");
+            if(readInput == null) isEnd = true;
+        }
+    }
+
+
 }
